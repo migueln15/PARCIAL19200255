@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using PARCIAL19200255.DOMAIN.Core.Interfaces;
 using PARCIAL19200255.DOMAIN.Infrastructure.Data;
+using PARCIAL19200255.DOMAIN.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ var cnx = _config.GetConnectionString("DevConnection");
 builder.Services
     .AddDbContext<Parcial20240219200255DbContext>
     (options => options.UseSqlServer(cnx));
+
+
+builder.Services.AddTransient<IAutoPartsRepository, AutoPartsRepository>();
+
 
 // Add services to the container.
 
